@@ -1,0 +1,122 @@
+#+TITLE: HA's GNU Emacs Config
+#+AUTHOR: Hussain Almalki (HA)
+#+DESCRIPTION: Introduction to Varables.
+#+STARTUP: showeverything
+#+OPTIONS: toc:2
+
+* TABLE OF CONTENTS :toc:
+- [[#introduction-to-varables][Introduction to Varables]]
+  - [[#declaration][DECLARATION]]
+  - [[#definition][DEFINITION]]
+  - [[#initialization][INITIALIZATION]]
+- [[#variable-naming-conventions][Variable Naming Conventions]]
+- [[#basic-output-function---printf][Basic Output Function - printf]]
+
+* Introduction to Varables
+In today's lesson, we are going to talk about variables in C programming.
+Think of a glass of water if you want to drink some water, then you put water inside glass and drink it. You can think of a variable as a glass of water
+
+| +++++++ | +++++++++ |
+| Glass   | Variable  |
+| Water   | Value     |
+| +++++++ | +++++++++ |
+
+As a glass can store water in it similarly variavles can store some value in it. After storing the value, you are free to use this value in your program. In reality, varables are simply names that points to some memory location. who makes it easy for us to store values in memory by simply useng the name of our choice.
+You must have to *declare varables before using it in your program.*
+
+** DECLARATION
+Declaration simple means, ~announcing the properties of varable to the compiler.~
+Here by saying properties we mean that what will be the =size of the variable= and what will be the =name of the variable.=
+
+** DEFINITION
+Which means allocating memory to a variable.
+*Most of the time declaratin and definition will be done at the same time.*
+
+#+begin_src c
+int var; //How to declare a variable.
+#+end_src
+
+Here the name of the variable is *var* and it has an integer data type.
+Data type simpley means how much space a variable is going to occupy in the memory. Therefore by writing ~int var~ you are declaring a variable along with that you are requesting the compiler to allocate memory for this variable.
+Pleass note down on one thing here after int var we have put a semicolon over here. This is very important. Because this is how your compiler separates one statement from the other.
+
+** INITIALIZATION
+If you assign some value to a variable, at the time of declaration itself then this thing is called initialization.
+
+#+begin_src c
+int var = 3;
+#+end_src
+
+#+begin_src c
+#include <stdio.h>
+
+//Then I am declaring main function.
+int main(){
+  //Declaring a variable named var suppose I initialize it first to 3.
+  int var = 3;
+  var = 4;
+  printf("%d\n", var);
+  return 0;
+}
+#+end_src
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int var1 = 3;
+  int var2 = 4;
+  var2 = var1;
+  printf("%d\n", var2);
+  return 0;
+}
+#+end_src
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int var1, var2, var3;
+  var1 = var2 = var3 = 4;
+  printf("%d\n", var1);
+  printf("%d\n", var2);
+  printf("%d\n", var3);
+  return 0;
+}
+#+end_src
+
+* Variable Naming Conventions
+*Variable Name*: composed of letters or combination of letters (both upercase and lowercase) and digits.
+▫️Rules for nameing variables are as follows.
+-🔸 don't start variable name with digit.
+-🔸 begining with underscore is valid but not recommended.
+-🔸 C langauge is case sensitive. Uppercase letters are different from lowercase letters.
+-🔸 special characters (@,#,%,^,&,*...) not allowed in the name of variable.
+-🔸 Blanks or white spaces not allowed.
+-🔸 Don't use keywords to name your variables.
+
+💡 Is one important tip:
+🚫 Do not use looooooooooooooonnnnnnnngggggggg... names for your variables.
+
+* Basic Output Function - printf
+Firts argument in printf is always within double quotes "", the reason behind this is that the first argument of printf is always a string constant that is sequence of characters to be printed on the screen.
+
+#+begin_src c
+printf("Hussain Almalki");
+printf("%d", var); //doesn't print percentile d on scareen instead it prints the value of var
+//%d is a placehoder for variable, "d" means decimal
+printf("%d %d", var1, var2);
+printf("%d %d %d", var1, var2, ); //Error: expected expression before ')' token
+#+end_src
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int two = 2, three = 3, six = 6;
+  int result = (two + three) * six / three;
+  printf("I am new to programming but I know how to write arithmetic expressions like this: (%d + %d) * %d / %d", two, three, six, three);
+  printf("and the result of this expression is: %d", result);
+  return 0;
+}
+#+end_src
