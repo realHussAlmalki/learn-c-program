@@ -1,0 +1,7 @@
+#+TITLE: HA's GNU Emacs Config
+#+AUTHOR: Hussain Almalki (HA)
+#+DESCRIPTION: Introduction to Varables.
+#+STARTUP: showeverything
+#+OPTIONS: toc:2
+
+* TABLE OF CONTENTS :toc:
