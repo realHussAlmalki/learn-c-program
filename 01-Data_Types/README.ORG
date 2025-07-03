@@ -1,7 +1,67 @@
 #+TITLE: HA's GNU Emacs Config
 #+AUTHOR: Hussain Almalki (HA)
-#+DESCRIPTION: Introduction to Varables.
+#+DESCRIPTION: Data Types
 #+STARTUP: showeverything
 #+OPTIONS: toc:2
 
 * TABLE OF CONTENTS :toc:
+- [[#fundamental-data-types---integer][Fundamental Data Types - Integer]]
+  - [[#size-of-integer][SIZE OF INTEGER]]
+
+* Fundamental Data Types - Integer
+We have various data types to study. And today we begin our session with ~integer Data Type~.
+** SIZE OF INTEGER
+| +       | +       |
+| 2 bytes | 16 bits |
+| 4 bytes | 32 bits |
+
+*** WANNA KNOW SIZE PROGRAMMATICALLY?
+- Use ~sizeof~ operator
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  printf("%d", sizeof(int));
+  return 0;
+}
+#+end_src
+*Note:* sizeof is a unary operator and not function.
+#+begin_src output
+4
+#+end_src
+
+*** RANGE
+*Range:* upper and lower limit of some set of data.
+FOR EXAMPLE: {0,1,2,3,4}
+Range: 0 to 4
+
+*** PREREQUSITES
+*Decimal number system:* Human Understandabel number system.
+Also called as ~base 10~ number system.
+*Range:* 0 to 9
+FOR EXAMPLE: 5 6 8
+10^2 x 5 + 10^1 x 6 + 10^0 x 8 = 500 + 60 + 8 = 568
+
+*Binary number system:* Machine Understandable number system.
+Also called as ~base 2~ number system.
+*Range:* 0 to 1
+FOR EXAMPLE: 1100
+2^3 x 1 + 2^2 x 1 + 2^1 x 0 + 2^0 x 0 = 8 + 4 + 0 + 0 = 12
+
+*** RANGE OF 4 BIT DATA?
+Now what would be the range of 4 bit data? As we know, to calculate range of any nubmer we have to know its minimum, as well as maximum value. For 4 bit data, minimum value is equals to 0. And maximum value is equals to 15.
+
+4 bit data: 0000 minimum value = 0
+4 bit data: 1111 maximum value = 15
+Range of 4 bit data: 0000 to 1111
+*FORMULA:* ~2^n - 1~
+
+*** RANGE OF INTEGER
+The size of integer is of 2 bytes,
+(2 bytes) [16 bits]
+- Unsgned range: 0 to 65535 ( by applying: 2^n - 1)
+- Signed range: -32768 to +32767
+- 2's complement range: -(2^n-1) to +(2^n-1 - 1)
+(4 bytes) [32 bits]
+- Unsigned range: 0 to 4294967295 (by applying: 2^n -1)
+- Signed range: -2147493648 to +2147483647
