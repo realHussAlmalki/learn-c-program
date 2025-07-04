@@ -12,7 +12,6 @@
 * Fundamental Data Types - Integer
 We have various data types to study. And today we begin our session with ~integer Data Type~.
 ** SIZE OF INTEGER
-| +       | +       |
 | 2 bytes | 16 bits |
 | 4 bytes | 32 bits |
 
