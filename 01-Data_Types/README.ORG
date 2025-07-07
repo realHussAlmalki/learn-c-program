@@ -8,6 +8,14 @@
 - [[#fundamental-data-types---integer][Fundamental Data Types - Integer]]
   - [[#size-of-integer][SIZE OF INTEGER]]
   - [[#summary][SUMMARY]]
+- [[#exceeding-the-valid-range-of-data-tpes][Exceeding the Valid Range of Data Tpes]]
+  - [[#outline][OUTLINE]]
+- [[#fundamental-data-types---character][Fundamental Data Types - Character]]
+  - [[#outline-1][OUTLINE]]
+  - [[#overview][OVERVIEW]]
+  - [[#size-and-range-of-character][SIZE AND RANGE OF CHARACTER]]
+  - [[#signed-vs-unsigned][SIGNED VS UNSIGNED]]
+  - [[#summary-1][SUMMARY]]
 
 * Fundamental Data Types - Integer
 We have various data types to study. And today we begin our session with ~integer Data Type~.
@@ -188,3 +196,190 @@ then sizeof(long long int) = 8 bytes
 - %lu is used to print "unsigned long integer".
 - %lld is used to print "long long integer".
 - %llu is used to print "unsigned long long integer".
+
+* Exceeding the Valid Range of Data Tpes
+** OUTLINE
+- Exceeding the unsigned range
+- Exceeding the signed range
+
+  here int this example I had provided an indigent variable and that to an unsigned integer variable and assigned it a value 4294967295 which is the maximum allowable value of an unsigned integer.
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  unsigned int var = 4294967295;
+  printf("%u", var);
+  return 0;
+}
+#+end_src
+Output:
+#+begin_src output
+4294967295
+#+end_src
+
+When we chagne the range we getting value is equals to zero.
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  unsigned int var = 4294967296;
+  printf("%u", var);
+  return 0;
+}
+#+end_src
+Output:
+#+begin_src output
+0
+#+end_src
+
+We are having the value from 0 to 7 for a 3 bit representation the minimum value would be equals to 0 and the maximum value is equals to 7.
+| 2^2 | 2^1 | 2^0 | 3 bit |
+|   0 |   0 |   0 |     0 |
+|   0 |   0 |   1 |     1 |
+|   0 |   1 |   0 |     2 |
+|   0 |   1 |   1 |     3 |
+|   1 |   0 |   0 |     4 |
+|   1 |   0 |   1 |     5 |
+|   1 |   1 |   0 |     6 |
+|   1 |   1 |   1 |     7 |
+
+When we try to represent the value 1 greater than 7 that is 8 if you want be able to represent this value 8 in a 3 bit representation as you can see foruth.
+
+| 2^3 | 2^2 | 2^1 | 2^0 | 3 bit |
+|   0 |   0 |   0 |   0 |     0 |
+|   0 |   0 |   0 |   1 |     1 |
+|   0 |   0 |   1 |   0 |     2 |
+|   0 |   0 |   1 |   1 |     3 |
+|   0 |   1 |   0 |   0 |     4 |
+|   0 |   1 |   0 |   1 |     5 |
+|   0 |   1 |   1 |   0 |     6 |
+|   0 |   1 |   1 |   1 |     7 |
+|   1 |   0 |   0 |   0 |     8 | -> 0 0 0
+
+For 32 bit unsigned data -> Mod 2^32
+For n bit unsigned data -> Mod 2^n
+#+begin_src c
+#include <stdio.h>
+
+int main() {
+  int var = 2147483648;
+  printf("%d", var);
+  return 0;
+}
+#+end_src
+Output
+#+begin_src output
+main.c: In function ‘main’:
+main.c:8:15: warning: overflow in conversion from ‘long int’ to ‘int’ changes value from ‘2147483648’ to ‘-2147483648’ [-Woverflow]
+    8 |     int var = 2147483648;
+      |               ^~~~~~~~~~
+#+end_src
+
+#+begin_src c
+#include <stdio.h>
+
+int main() {
+  int var = -2147483649;
+  printf("%d", var);
+  return 0;
+}
+#+end_src
+Output:
+#+begin_src output
+main.c: In function ‘main’:
+main.c:8:15: warning: overflow in conversion from ‘long int’ to ‘int’ changes value from ‘-2147483649’ to ‘2147483647’ [-Woverflow]
+    8 |     int var = -2147483649;
+      |               ^
+#+end_src
+
+* Fundamental Data Types - Character
+** OUTLINE
+- Brief overview on character data type.
+- Size of characters.
+- Range of characters.
+- Difference between signed and unsigned characters.
+
+** OVERVIEW
+|        H |        E |        L |        L |        O |       ! |
+| 01001000 | 01100101 | 01101100 | 01101100 | 01101111 | 0010001 |
+Computer is capable to understand only 0 and 1. Therefor, we need to represent characters in 0 and 1 form only. But we don't need to bother about it. Because internally, all are represented in bits form only. To encode characters, there are several encoding schemes available. But one of the most commaon encoding scheme is ~ASCII~. [[https://www.ascii-code.com/][here]]
+
+*HOW WE DEFINE AND DECLARE A CHARACTER VARIABLE*
+=char some_variable_name = 'N';=
+I have declared a variable of character data type ~char~ and assigned it a character ~N~.
+NOTE:📍Remember to put single quotes '' and *not* double quotes ""
+You can also assign integer values to them. For example
+=char some_variable_name = 65;=
+I have provided a value 65. Now, this value acts like a charcater, when we are going to print it of this variable we get a character instedad of an integer.
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  char var = 65;
+  printf("%c", var);
+  return 0;
+}
+#+end_src
+Output:
+#+begin_src output
+A
+#+end_src
+
+** SIZE AND RANGE OF CHARACTER
+*** Size:
+- 1 byte = 8 bits
+*** Range:
+- Unsigned: 0 to 255
+- Signed: -128 to +127
+
+** SIGNED VS UNSIGNED
+-128 =
+|----+---+---+---+---+---+---+---|
+|  7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| -2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+|  1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
++128 =
+|---+---+---+---+---+---+---+---|
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+-127 =
+|----+---+---+---+---+---+---+---|
+|  7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| -2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+|  1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
++129 =
+|---+---+---+---+---+---+---+---|
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
+-1 =
+|----+---+---+---+---+---+---+---|
+|  7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| -2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+|  1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++255 =
+|---+---+---+---+---+---+---+---|
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
+| 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  char var = -128;
+  printf("%c", var);
+  return 0;
+}
+#+end_src
+
+** SUMMARY
+- Size of character = 1 byte
+- Signed character range: -128 to +127
+- Unsigned character range: 0 to 255
+- Negative values won't byt you any additional powers
+- In traditional ASCII table, each character requires 7 bits.
+- In extended ASCII table, each character utilize all 8 bits.
