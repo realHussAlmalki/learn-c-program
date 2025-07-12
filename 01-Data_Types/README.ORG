@@ -29,6 +29,10 @@
 - [[#variable-modifiers---auto--extern][Variable Modifiers - Auto & Extern]]
   - [[#what-is-auto-modifier][WHAT IS AUTO MODIFIER?]]
   - [[#extern-modifier][EXTERN MODIFIER]]
+- [[#variable-modifiers---register][Variable Modifiers - Register]]
+  - [[#what-is-register-modifier][WHAT IS REGISTER MODIFIER?]]
+- [[#variable-modifiers---static][Variable Modifiers - Static]]
+  - [[#takeaways][TAKEAWAYS]]
 
 * Fundamental Data Types - Integer
 We have various data types to study. And today we begin our session with ~integer Data Type~.
@@ -772,3 +776,121 @@ int main(){
 - Extern variable says to compiler "go outside from my scope and you witl find teh definition of the I declared".
 - compiler believes that whatever the extern variable said is true and produce no error. Linker throws an error when he finds no such variable exist.
 - When an extern variable is initialized, then memory for thsi variable is allocated and it will be considered defined.
+
+* Variable Modifiers - Register
+|---------------------------------------+-----------------+------------------|
+| Increasing order of access time ratio | Register Memory |                  |
+|                                       | Cach Memory     |                  |
+|                                       | Main Memory     | Primary Memory   |
+|                                       | Magenetic Disks | Auxillary Memory |
+|                                       | Magnetic Tapes  | Auxillary Memory |
+|---------------------------------------+-----------------+------------------|
+
+** WHAT IS REGISTER MODIFIER?
+*Syntax*: ~register some_data_type some_variable_name;~
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  register int var;
+  return 0;
+}
+#+end_src
+- *Register keyword hints the compiler to store a variable in register memory.*
+- This is done because access time reduces greatly for most frequently referred variables.
+- This is the choice of compiler whether it puts the given variable in register or not.
+- Usually compiler themselves do the necessary optimizations.
+* Variable Modifiers - Static
+
+#+begin_src c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+  int value;
+  value = increment();
+  value = increment();
+  value = increment();
+
+  printf("%d", value);
+  return 0;
+}
+#+end_src
+
+#+begin_src c
+//NOTE:add.c
+int increment(){
+  int count = 0;
+  count = count + 1;
+  return count; //output 1
+}
+#+end_src
+
+#+begin_src c
+//NOTE:add.c
+int count;
+
+int increment(){
+  count = count + 1;
+  return count; //output 3
+}
+#+end_src
+---
+#+begin_src c
+#include <stdio.h>
+#include <stdlib.h>
+
+extern int count;
+int main(){
+  int value;
+  value = increment();
+  value = increment();
+  value = increment();
+  count = count + 3;
+  value = count;
+
+  printf("%d", value);
+  return 0;
+}
+#+end_src
+
+#+begin_src c
+//NOTE:add.c
+static int count;
+
+int increment(){
+  count = count + 1;
+  return count;
+}
+#+end_src
+---
+#+begin_src c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+  int value;
+  value = increment();
+  value = increment();
+  value = increment();
+
+  printf("%d", value);
+  return 0;
+}
+#+end_src
+
+#+begin_src c
+//NOTE:add.c
+
+int increment(){
+  //int var = 3; 
+  static int count; //static int count = 3; // static int count = var; -> Error
+  count = count + 1;
+  return count; //output 3
+}
+#+end_src
+
+** TAKEAWAYS
+- Static variable remains in memory even if it is declared within a block on the other hand automatic variable is destroyed after the completion of function in which it was declared.
+- Static variable if declared outside the scope of any function will act like global variable but only within the file in which it is declared.
+- You can only assign a constant literal (or value) to a static variable.
