@@ -33,6 +33,9 @@
   - [[#what-is-register-modifier][WHAT IS REGISTER MODIFIER?]]
 - [[#variable-modifiers---static][Variable Modifiers - Static]]
   - [[#takeaways][TAKEAWAYS]]
+- [[#constants-in-c][Constants in C]]
+  - [[#what-is-constant][WHAT IS CONSTANT?]]
+  - [[#defining-constants][DEFINING CONSTANTS]]
 
 * Fundamental Data Types - Integer
 We have various data types to study. And today we begin our session with ~integer Data Type~.
@@ -894,3 +897,74 @@ int increment(){
 - Static variable remains in memory even if it is declared within a block on the other hand automatic variable is destroyed after the completion of function in which it was declared.
 - Static variable if declared outside the scope of any function will act like global variable but only within the file in which it is declared.
 - You can only assign a constant literal (or value) to a static variable.
+
+* Constants in C
+** WHAT IS CONSTANT?
+As the name suggests - something that never change. Once defined cannot be modified later in the code.
+** DEFINING CONSTANTS
+|---------------+-------------------------------------------------|
+| using #define | Syntax: #define NAME value                      |
+| using const   | Syntax: const some_data_type some_variable_name |
+
+*** using #define
+Also called Macro. Job of preprocessor (not compiler) to replace NAME with value.
+#+begin_src c
+#include <stdio.h>
+#define PI 3.14159
+
+int main(){
+  printf("%.5f", PI);
+  return 0;
+}
+#+end_src
+Output
+#+begin_src text
+3.14159
+#+end_src
+*** TAKEAWAYS
+- Please don't add ~semicolon~ at the end.
+- Choosing capital letters for NAME is good practice.
+- Whatever inside double qoutes "" won't get replaced.
+- We can use macros like functions.
+#+begin_src c
+#include <stdio.h>
+#define add(x,y) x+y
+
+int main(){
+  printf("addition of two numbers: %d", add(4,3));
+  return 0;
+}
+#+end_src
+- We can write multiple lines using \
+- First expansion then evaluation.
+- Some predefined macros like ~__DATE__~, ~__TIME__~ can print current date and time.
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  printf("DATE: %s\n", __DATE__);
+  printf("TIME: %s\n", __TIME__);
+  return 0;
+}
+#+end_src
+*** using const
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int var = 67;
+  var = 57;
+  printf("%d", var);
+  return 0;
+}
+#+end_src
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  const int var = 67;
+  printf("%d", var);
+  return 0;
+}
+#+end_src
