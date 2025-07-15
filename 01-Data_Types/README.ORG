@@ -36,6 +36,13 @@
 - [[#constants-in-c][Constants in C]]
   - [[#what-is-constant][WHAT IS CONSTANT?]]
   - [[#defining-constants][DEFINING CONSTANTS]]
+- [[#important-questions][Important Questions]]
+  - [[#q1-what-is-the-output-of-the-following-c-program][Q1: What is the output of the following C program?]]
+  - [[#q2-what-is-the-output-of-the-following-c-program][Q2: What is the output of the following C program?]]
+- [[#basic-input-function---scanf][Basic Input Function - scanf]]
+  - [[#what-is-scanf][WHAT IS SCANF?]]
+  - [[#example][EXAMPLE]]
+  - [[#why-][WHY &?]]
 
 * Fundamental Data Types - Integer
 We have various data types to study. And today we begin our session with ~integer Data Type~.
@@ -965,6 +972,69 @@ int main(){
 int main(){
   const int var = 67;
   printf("%d", var);
+  return 0;
+}
+#+end_src
+
+* Important Questions
+** Q1: What is the output of the following C program?
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int var = 052;
+  printf("%d", var); //printf("%o", var); //output is 52
+  return 0;
+}
+#+end_src
+Output:
+#+begin_src text
+a) 52
+b) 56
+c) 42 -> answer 5 * 8 + 2 * 1 = 42 + 2 = 42
+d) Compiler error
+#+end_src
+
+** Q2: What is the output of the following C program?
+#+begin_src c
+#include <stdio.h>
+#define STRING "%s\n"
+#define JEDDAH "Welcome to JEDDAH CITY!"
+
+int main(){
+  printf("STRING, JEDDAH");
+  return 0;
+}
+#+end_src
+Output:
+#+begin_src text
+a) Compiler error
+b) "Welcome to JEDDAH CITY!
+c) Garbage value
+d) Weclome to JEDDAH CITY! -> answer -> printf("%s\n", "Welcome t JEDDAH CITY!")
+#+end_src
+* Basic Input Function - scanf
+** WHAT IS SCANF?
+Stands for Scan Formatted string. Accept character, string and numeric data from the user using standard input - Keyborad. Scanf also use ~format specifiers~ like printf. For example: %d to accept input of integer type. %c t accept input of character type %s to accept a string.
+** EXAMPLE
+#+begin_src c
+int var;
+scanf("%d", &var); //NOTE: Don't forget to add & in front of variable name.
+#+end_src
+** WHY &?
+While scanning the input, scanf needs to store that input data somewhere. To store this input date, scanf needs to know the memory location of a variable.
+- & is also called as ~address-of~ operator.
+
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int a, b;
+  printf("Enter the first number\n");
+  scanf("%d", &a);
+  printf("Enter the second number\n");
+  scanf("%d", &b);
+  printf("%d + %d = %d", a, b, a+b);
   return 0;
 }
 #+end_src
