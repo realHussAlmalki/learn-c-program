@@ -1,7 +1,41 @@
-#+TITLE: HA's GNU Emacs Config
+#+TITLE: HA's Operators in C
 #+AUTHOR: Hussain Almalki (HA)
-#+DESCRIPTION: Introduction to Varables.
+#+DESCRIPTION: Operators in C.
 #+STARTUP: showeverything
 #+OPTIONS: toc:2
 
 * TABLE OF CONTENTS :toc:
+- [[#intorduction-to-operators-in-c][Intorduction to Operators in C]]
+  - [[#why-i-am-disussing-all-these-programs][WHY I AM DISUSSING ALL THESE PROGRAMS?]]
+
+* Intorduction to Operators in C 
+Write a program to find the area of the rectangular garden provided that the length of the rectangular garden is 15 meters and breadth is 10 meters.
+- ~15 * 10~
+Write a program to check if annual turnover of your company is grater than or equal to the annual turnover of your competitor.
+- ~300000000 >= 50000000~
+Write a program to make a decision that if you have both chair and table then you start studying your favorite subject otherwise you simpley go to sellp.
+#+begin_src text
+if(🪑&&⛩𓊳)
+    👨🏻‍💻📚
+else
+   🛌🏻
+#+end_src
+
+** WHY I AM DISUSSING ALL THESE PROGRAMS?
+- ~15 * 10~ - Arithmetic operator
+- ~300000000 >= 500000000~ - Relational operator
+- ~if(🪑&&⛩𓊳)~ - Logical operator
+
+|-------------------------------+--------------------------------+
+| Name of Operatros             | Operators                      |
+| Arithmetic operators          | +,-,*,/,%                      |
+| Increment/decrement operators | ++,--                          |
+| Relational operators          | ==, !=, <=, >=, <, > |
+| Logical operators             | &&, ||, !                  |
+| Bitwise operators             | &, ^, |, ~, >>, <<    |
+| Assignment operators| =, +=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |= |
+| Other operators | ?: &  * sizeof() ,|
+
+
+
+
