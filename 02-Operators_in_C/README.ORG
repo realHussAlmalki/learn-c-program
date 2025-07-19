@@ -7,6 +7,9 @@
 * TABLE OF CONTENTS :toc:
 - [[#intorduction-to-operators-in-c][Intorduction to Operators in C]]
   - [[#why-i-am-disussing-all-these-programs][WHY I AM DISUSSING ALL THESE PROGRAMS?]]
+- [[#arithmetic-operators-in-c][Arithmetic Operators in C]]
+  - [[#arithmetic-operators][ARITHMETIC OPERATORS]]
+  - [[#operator-precedence-and-associativity][OPERATOR PRECEDENCE AND ASSOCIATIVITY]]
 
 * Intorduction to Operators in C 
 Write a program to find the area of the rectangular garden provided that the length of the rectangular garden is 15 meters and breadth is 10 meters.
@@ -26,16 +29,66 @@ else
 - ~300000000 >= 500000000~ - Relational operator
 - ~if(🪑&&⛩𓊳)~ - Logical operator
 
-|-------------------------------+--------------------------------+
-| Name of Operatros             | Operators                      |
-| Arithmetic operators          | +,-,*,/,%                      |
-| Increment/decrement operators | ++,--                          |
-| Relational operators          | ==, !=, <=, >=, <, > |
-| Logical operators             | &&, ||, !                  |
-| Bitwise operators             | &, ^, |, ~, >>, <<    |
-| Assignment operators| =, +=, -=, *=, /=, %=, <<=, >>=, &=, ^=, |= |
-| Other operators | ?: &  * sizeof() ,|
+|-------------------------------+------------------------|
+| Name of Operatros             | Operators              |
+| Arithmetic operators          | +,-,*,/,%              |
+| Increment/decrement operators | ++,--                  |
+| Relational operators          | ~==, !=, <=, >=, <, >~ |
+| Logical operators             | *1                     |
+| Bitwise operators             | *2                     |
+| Assignment operators          | *3                     |
+| Other operators               | ~?: &  * sizeof() ,    |
 
+- 1) ~&&, ||, !~
+- 2) ~&, ^, |, ~, >>, <<~
+- 3) ~=, +=, -=, /=, %=, <<=, >>=, &=, ^=, |=~
 
+* Arithmetic Operators in C
+** ARITHMETIC OPERATORS
+- ~+, -, *, /, %~
+|---+----------------|
+| + | addition       |
+| - | Subtraction    |
+| * | Multiplication |
+| / | Division       |
+| % | Modulus        |
 
+All are binary operators, means two operands are required to perform operation.
+- For example:
+  - A + B
+  - Op1 + Op2
+#+begin_src c
+#include <stdio.h>
 
+int main(){
+  int a, b;
+  printf("Enter the first number: ");
+  scanf("%d", &a);
+  printf("Enter the second number: ");
+  scanf("%d", &b);
+
+  printf("a/b=%d\n", a/b);
+  printf("a%%b=%d\n", a%b);
+  return 0;
+}
+#+end_src
+
+** OPERATOR PRECEDENCE AND ASSOCIATIVITY
+|-----------+---------------+------------|
+| Operators | Associativity | Precedence |
+| *,/,%     | Left to right | Highest    |
+| +,-       | Left to right | Lowest     |
+NOTE: Associativity is used only when two or more operators are of same precedence.
+- For example: +,-
+Same precedence therefroe we use associativity.
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int a=2, b=3, c=4, d=5;
+  printf("a*b/c=%d\n", a*b/c);
+  printf("a+b-c=%d\n", a+b-c);
+  printf("a+b*d-c%%a=%d", a+b*d-c%a);
+  return 0;
+}
+#+end_src
