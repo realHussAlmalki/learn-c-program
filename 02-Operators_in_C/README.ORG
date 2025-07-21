@@ -10,6 +10,9 @@
 - [[#arithmetic-operators-in-c][Arithmetic Operators in C]]
   - [[#arithmetic-operators][ARITHMETIC OPERATORS]]
   - [[#operator-precedence-and-associativity][OPERATOR PRECEDENCE AND ASSOCIATIVITY]]
+- [[#inrement-and-decrement-operators-in-c][Inrement and Decrement Operators in C]]
+  - [[#what-are-increment-and-decrement-operators][WHAT ARE INCREMENT AND DECREMENT OPERATORS?]]
+  - [[#increment-and-decrement-operators][INCREMENT AND DECREMENT OPERATORS]]
 
 * Intorduction to Operators in C 
 Write a program to find the area of the rectangular garden provided that the length of the rectangular garden is 15 meters and breadth is 10 meters.
@@ -89,6 +92,94 @@ int main(){
   printf("a*b/c=%d\n", a*b/c);
   printf("a+b-c=%d\n", a+b-c);
   printf("a+b*d-c%%a=%d", a+b*d-c%a);
+  return 0;
+}
+#+end_src
+
+* Inrement and Decrement Operators in C
+** WHAT ARE INCREMENT AND DECREMENT OPERATORS?
+Increment operator is used to increment the value of a variable by one. Similarly, decrement operator is used to decrement the balue of a variable by one.
+
+|------------+------------|
+| Increment  | Decrement  |
+| int a = 5; | int a = 5; |
+| a++;       | a--;       |
+| a = 6      | a = 4      |
+
+- ~a++; is same as a = a + 1;~
+- ~a--; is same as a = a - 1;~
+
+** INCREMENT AND DECREMENT OPERATORS
+- Both are unary operators.
+  - because they are applied on single operand. ~a++;~ 
+|------------------------+-------------------------|
+| Pre-increment operator | Post-increment operator |
+| ++a;                   | a++;                    |
+
+|------------------------+-------------------------|
+| Pre-decrement operator | Post-decrement operaotr |
+| --a;                   | a--;                    |
+
+You cannot use rvalue before or after increment/decrement operator.
+Example:
+- (a + b)++; error!
+- ++(a + b); error!
+  Compiler is expecting a variable as an increment operand but we are providing an expression (a+b) which does not have the capability to store data.
+
+*lvalue (left value)*:simply means an object that has an identifiable location in memory (i.e. having an address).
+*rvalue (right value)*:simply means an object that has no identifiable location in memeory.
+
+*Question:* What is the difference between pre-increment and post-increment operator OR pre-decrement and post-decrement operator?
+Pre - means first increment/decrement then assign it to another variable.
+Post - means first assigne it to another variable then increment/decrement.
+
+|----------+----------|
+| x = ++a; | x = a++; |
+
+|---+---+---|
+| x |   | 5 |
+| 6 |   | 6 |
+| x | = | 6 |
+
+|---+---+---|
+| x |   | 5 |
+| 5 |   | 6 |
+| x | = | 5 |
+
+- Q1: What is the output of the following C program fragement?
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int a = 4, b = 3;
+  printf("%d", a+++b); //[a] [++] [+] [b] -> [a++] [+] [b] = [4++] [+] [3] -> [5] [+] [4] = 8
+  // Post increment/decrement in context of eauation
+  // First use the value in the equatin and then increment the value
+  // 7
+  return 0;
+}
+#+end_src
+
+- Q2: What is the output of the following C program fragement?
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int a = 4, b = 3;
+  printf("%d", a + ++b);
+  //8
+  return 0;
+}
+#+end_src
+
+- Q3: What is the output of the following C program fragement?
+#+begin_src c
+#include <stdio.h>
+
+int main(){
+  int a = 4, b = 3;
+  printf("%d", a+++++b);
+  //Error
   return 0;
 }
 #+end_src
