@@ -276,17 +276,3 @@ int main(){
 #+end_src
 
 Short circuit in case of ~||~: simply means if there is acondition anywhere in the expression that returns True, then the rest of the conditions after that will not be evaluated.
-
-#+begin_src c
-#include <stdio.h>
-
-int main(){
-  int a = 5, b = 3;
-  int incr;
-
-  incr = (a>b) || (b++);
-  printf("%d\n", incr);
-  printf("%d", b);
-  return 0;
-}
-#+end_src
